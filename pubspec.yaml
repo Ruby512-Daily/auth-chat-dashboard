@@ -1,0 +1,41 @@
+name: auth_dashboard
+description: "Auth and Chat"
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  http: ^0.13.6
+  socket_io_client: ^2.0.0
+  jwt_decoder: ^2.0.1
+  google_fonts: ^2.1.0
+  flutter_secure_storage: ^5.0.2
+  flutter_svg: ^1.0.10
+  fl_chart: ^0.68.0
+  provider: ^6.0.0
+  freezed_annotation: ^2.4.1
+  awesome_dialog: ^3.1.0
+  json_annotation: ^4.8.1
+  dio: ^5.3.3
+  intl: ^0.18.1
+  json_serializable: ^6.7.1
+  freezed: ^2.4.2
+  flutter_riverpod: ^2.4.0
+  shared_preferences: ^2.0.6
+  fluttertoast: ^8.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
