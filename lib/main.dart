@@ -1,7 +1,6 @@
-import 'package:auth_dashboard/constants/color_constants.dart';
-import 'package:auth_dashboard/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:auth_dashboard/login_screen.dart';
 
 void main() {
   runApp(
@@ -19,7 +18,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Auth DashBoard',
         theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: bgColor, canvasColor: secondaryColor),
+            scaffoldBackgroundColor: Color(0xFF212332),
+            canvasColor: Color(0xFF2A2D3E)),
         home: LoginScreen());
   }
 }

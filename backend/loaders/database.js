@@ -1,4 +1,3 @@
-const fs = require("fs");
 const database = require("../models");
 const logger = require("../utils/logger");
 

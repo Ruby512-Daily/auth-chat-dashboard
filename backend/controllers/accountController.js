@@ -1,6 +1,7 @@
 const { Account } = require("../models");
 const logger = require("../utils/logger");
 
+
 exports.createAccount = async (req, res) => {
   try {
     const {
@@ -12,7 +13,6 @@ exports.createAccount = async (req, res) => {
       phone,
       address,
       photo,
-      identify,
     } = req.body;
     const accountFlag = await Account.findOne({ privateEmail: privateEmail });
     if (accountFlag) {
@@ -27,9 +27,7 @@ exports.createAccount = async (req, res) => {
         phone,
         address,
         photo,
-        identify,
       });
-
       return res.status(200).json({
         status: true,
         account: account,
@@ -57,7 +55,8 @@ exports.readAccount = async (req, res) => {
 exports.readAccountById = async (req, res) => {
   try {
     const _id = req.params._id;
-    const account = await Account.findOne({ _id });
+    const account = await Account.find({ _id });
+
     if (account) return res.status(200).json({ account });
     else res.status(404).json({ message: `Get AccountsFailed | Not Found` });
   } catch (error) {
@@ -108,11 +107,12 @@ exports.updateAccount = async (req, res) => {
 exports.deleteAccount = async (req, res) => {
   const _id = req.params._id;
   try {
+    console.log(_id);
     const account = await Account.findOne({ _id });
     if (!account) {
       return res.status(404).send({ message: "Cannot find the Account" });
     }
-    await Account.destroy({ _id });
+    await Account.deleteOne({ _id });
     return res.status(200).send({ message: "Successfully deleted" });
   } catch (error) {
     return res

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class FormValidators {
-
   FormValidators._();
 
-   static FormFieldValidator<String?> getLeastValueValidator(int minValue, String errorMessage) {
+  static FormFieldValidator<String?> getLeastValueValidator(
+      int minValue, String errorMessage) {
     return (String? value) {
       if (value == null ||
           value.trim().isEmpty ||
@@ -15,7 +15,8 @@ class FormValidators {
     };
   }
 
-  static FormFieldValidator<String?> getEmptyValueValidator(String errorMessage) {
+  static FormFieldValidator<String?> getEmptyValueValidator(
+      String errorMessage) {
     return (String? value) {
       if (value == null || value.trim().isEmpty) {
         return errorMessage;

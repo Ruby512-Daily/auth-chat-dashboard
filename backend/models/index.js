@@ -16,11 +16,11 @@ const db = {};
 db.mongoose = mongoose;
 db.Admin = require("./admin");
 db.Account = require("./account");
+db.Vocation = require("./vacation");
 
 db.sync = async () => {
   //Migrate (clear collections and add initial data if necessary)
   await db.Admin.migrate();
-  await db.Account.migrate();
 };
 
 module.exports = db;

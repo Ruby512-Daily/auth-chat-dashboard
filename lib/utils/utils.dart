@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:convert'; // For base64 encoding and decoding
 import 'dart:typed_data'; // For handling byte data
-import 'package:flutter/material.dart';
 
 bool isMobileView() {
   return Platform.isAndroid || Platform.isIOS;
@@ -92,38 +90,6 @@ Widget add64HorizontalSpace() {
   return const SizedBox(
     width: 64,
   );
-}
-
-Future<void> saveUserData(String token, String id, String role) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('auth_token', token);
-  prefs.setString('_id', id);
-  prefs.setString('role', role);
-}
-
-Future<String?> getToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('auth_token');
-}
-
-Future<String?> getID() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('_id');
-}
-
-Future<String?> getRole() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('role');
-}
-
-Future<void> setMenu(String menu) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setString('menu', menu);
-}
-
-Future<String?> getMenu() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  return prefs.getString('menu');
 }
 
 Uint8List? decodeBase64Image(String base64String) {

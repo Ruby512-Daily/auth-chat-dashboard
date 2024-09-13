@@ -46,23 +46,35 @@ const startServer = async () => {
   const socketIo = require("socket.io");
   const io = socketIo(server);
   const Message = require("./models/chatApp");
-  // Socket.IO connection
+  let users = {};
+  // Handle new connections
   io.on("connection", (socket) => {
-    console.log("User connected:", socket.id);
+    console.log("User connected: ", socket.id);
 
-    socket.on("joinRoom", ({ userId }) => {
-      socket.join(userId);
+    // Listen for login event to store user info
+    socket.on("login", (username) => {
+      users[socket.id] = username;
+      io.emit("userList", Object.values(users)); // Send updated user list to all clients
     });
 
-    socket.on("sendMessage", async (data) => {
-      const { senderId, receiverId, message } = data;
-      const newMessage = new Message({ senderId, receiverId, message });
-      await newMessage.save();
-      io.to(receiverId).emit("receiveMessage", newMessage);
+    // Listen for messages
+    socket.on("send_message", ({ message, recipient }) => {
+      const recipientSocket = Object.keys(users).find(
+        (key) => users[key] === recipient
+      );
+      if (recipientSocket) {
+        io.to(recipientSocket).emit("receive_message", {
+          message,
+          sender: users[socket.id],
+        });
+      }
     });
 
+    // Handle disconnection
     socket.on("disconnect", () => {
-      console.log("User disconnected:", socket.id);
+      console.log("User disconnected: ", socket.id);
+      delete users[socket.id];
+      io.emit("userList", Object.values(users)); // Update user list on disconnection
     });
   });
 

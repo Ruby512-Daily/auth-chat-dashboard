@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const md5 = require("md5");
 const Schema = mongoose.Schema;
 
 const AccountSchema = new Schema(
@@ -42,22 +40,17 @@ const AccountSchema = new Schema(
       required: true,
       default: "",
     },
-    identify: {
+    password: {
       type: String,
-      required: true,
       default: "",
     },
+
   },
   {
     collection: "accounts",
     timestamps: true,
   }
 );
-
-// Static method to migrate account data
-AccountSchema.statics.migrate = async function () {
-  //await this.deleteMany({});
-};
 
 const Account = mongoose.model("Account", AccountSchema);
 

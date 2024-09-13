@@ -9,6 +9,7 @@ const adminMiddle = require("../middleware/adminMiddleware");
 
 //Auth Logic
 router.post("/login", authControl.user_login);
+router.post("/logup", authControl.user_logup);
 
 //CRUD Logic
 router.post(
